@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Ebbinghaus</title>
+    <link rel="stylesheet" href="home-page.css">
+</head>
+<body>
+    <svg width="0" height="0">
+        <defs>
+            <filter id="turbulence-text">
+                <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="3" seed="1">
+                    <animate attributeName="seed" from="1" to="10" dur="0.5s" repeatCount="indefinite"/>
+                </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" scale="2"/>
+            </filter>
+            <filter id="turbulence-logo">
+                <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="2" seed="1">
+                    <animate attributeName="seed" from="1" to="10" dur="0.75s" repeatCount="indefinite"/>
+                </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" scale="3"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <header>
+        <nav class="top-bar">
+            <div class="left-buttons">
+                <a href="about.html" class="nav-button" id="aboutButton">
+                    <svg width="90" height="40">
+                        <rect class="button-bg" x="5" y="5" width="80" height="30" rx="3" ry="3" fill="transparent"/>
+                        <text x="15" y="25" filter="url(#turbulence-text)" fill="white" font-size="18" font-weight="bold">About</text>
+                    </svg>
+                </a>
+                <a href="memorize.html" class="nav-button" id="memorizeButton">
+                    <svg width="120" height="40">
+                        <rect class="button-bg" x="5" y="5" width="110" height="30" rx="3" ry="3" fill="transparent"/>
+                        <text x="15" y="25" filter="url(#turbulence-text)" fill="white" font-size="18" font-weight="bold">Memorize</text>
+                    </svg>
+                </a>
+                <a href="user-settings.html" class="nav-button" id="userSettingsButton">
+                    <svg width="150" height="40">
+                        <rect class="button-bg" x="5" y="5" width="140" height="30" rx="3" ry="3" fill="transparent"/>
+                        <text x="15" y="25" filter="url(#turbulence-text)" fill="white" font-size="18" font-weight="bold">User Settings</text>
+                    </svg>
+                </a>
+            </div>
+            <div class="right-buttons">
+                <a href="login.html" class="nav-button login-button">
+                    <svg width="90" height="40">
+                        <rect class="button-bg" x="5" y="5" width="80" height="30" rx="3" ry="3" fill="#D32F2F"/>
+                        <text x="15" y="25" filter="url(#turbulence-text)" fill="white" font-size="18" font-weight="bold">Log In</text>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <svg width="200" height="200" class="logo-container">
+            <g filter="url(#turbulence-logo)" id="logo">
+                <circle cx="100" cy="100" r="80" fill="#E57373"/>
+                <text x="100" y="90" text-anchor="middle" fill="white" font-size="24" font-weight="bold">Project</text>
+                <text x="100" y="120" text-anchor="middle" fill="white" font-size="24" font-weight="bold">Ebbinghaus</text>
+            </g>
+        </svg>
+    </main>
+    <footer>
+        <!-- Footer content if needed -->
+    </footer>
+    <script src="/js/common.js"></script>
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const logo = document.getElementById('logo');
+    let isHovering = false;
+
+    logo.addEventListener('mouseenter', function() {
+        isHovering = true;
+        this.style.transform = 'scale(1.05)';
+    });
+
+    logo.addEventListener('mouseleave', function() {
+        isHovering = false;
+        this.style.transform = 'scale(1)';
+    });
+
+    logo.addEventListener('mousedown', function() {
+        if (isHovering) {
+            this.style.transform = 'scale(1)';
+        }
+    });
+
+    logo.addEventListener('mouseup', function() {
+        if (isHovering) {
+            this.style.transform = 'scale(1.05)';
+        }
+    });
+})
+</script>

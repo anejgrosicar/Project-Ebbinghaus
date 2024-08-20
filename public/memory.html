@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Memorize - Project Ebbinghaus</title>
+ <link rel="stylesheet" href="memory.css">
+</head>
+<body>
+ <svg width="0" height="0">
+   <defs>
+     <filter id="turbulence-text">
+       <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="3" seed="1">
+         <animate attributeName="seed" from="1" to="10" dur="0.5s" repeatCount="indefinite"/>
+       </feTurbulence>
+       <feDisplacementMap in="SourceGraphic" scale="2"/>
+     </filter>
+   </defs>
+ </svg>
+
+
+ <header>
+   <nav class="top-bar">
+     <div class="left-buttons">
+       <a href="home-page.html" class="nav-button home-button" id="homebutton">
+         <svg width="220" height="50">
+           <text x="10" y="30" filter="url(#turbulence-text)" fill="white" font-size="22" font-weight="bold">Project Ebbinghaus</text>
+         </svg>
+       </a>
+       <div class="divider"></div>
+       <a href="about.html" class="nav-button" id="aboutButton">
+         <svg width="90" height="40">
+           <rect class="button-bg" x="5" y="5" width="80" height="30" rx="3" ry="3" fill="transparent"/>
+           <text x="15" y="25" filter="url(#turbulence-text)" fill="white" font-size="18" font-weight="bold">About</text>
+         </svg>
+       </a>
+       <a class="nav-button current-page" id="memorizeButton">
+         <svg width="120" height="40">
+           <rect class="button-bg" x="5" y="5" width="110" height="30" rx="3" ry="3" fill="rgba(211, 47, 47, 0.3)"/>
+           <text x="15" y="25" filter="url(#turbulence-text)" fill="white" font-size="18" font-weight="bold">Memorize</text>
+         </svg>
+       </a>
+       <a href="user-settings.html" class="nav-button" id="userSettingsButton">
+         <svg width="150" height="40">
+           <rect class="button-bg" x="5" y="5" width="140" height="30" rx="3" ry="3" fill="transparent"/>
+           <text x="15" y="25" filter="url(#turbulence-text)" fill="white" font-size="18" font-weight="bold">User Settings</text>
+         </svg>
+       </a>
+     </div>
+     <div class="right-buttons">
+       <a href="login.html" class="nav-button login-button">
+         <svg width="90" height="40">
+           <rect class="button-bg" x="5" y="5" width="80" height="30" rx="3" ry="3" fill="#D32F2F"/>
+           <text x="15" y="25" filter="url(#turbulence-text)" fill="white" font-size="18" font-weight="bold">Log In</text>
+         </svg>
+       </a>
+     </div>
+   </nav>
+ </header>
+
+
+ <main>
+     <h1>Let's Memorize!</h1>
+
+
+
+
+
+
+
+
+     <div class="deck-container">
+       <h2 class="collapsible">Current Decks</h2>
+        <div class="content">
+        <div id="currentDecksList" class="decks-grid"></div>
+        </div>
+        <h2 class="collapsible">Past Decks</h2>
+     <div class="content">
+       <div id="pastDecksList" class="decks-grid"></div>
+     </div>
+     </div>
+
+
+
+
+
+
+
+
+     <div class="form-container">
+         <div class="create-deck-section">
+             <h3>Create a New Deck</h3>
+             <form id="deckForm" class="memorize-form">
+                 <input type="text" id="deckName" placeholder="Deck Name" required>
+                 <button type="submit">Create Deck</button>
+             </form>
+         </div>
+
+
+
+
+
+
+
+
+         <div class="add-card-section">
+             <h3>Add a Card to Deck</h3>
+             <form id="cardForm" class="memorize-form">
+                 <select id="deckSelect" required>
+                     <option value="">Select a Deck</option>
+                 </select>
+                 <div class="card-side">
+                     <h4>Front of Card</h4>
+                     <textarea id="frontContent" rows="4" placeholder="Front content" required></textarea>
+                     <input type="file" id="frontFile" accept="image/*,.pdf">
+                     <div id="frontPreview"></div>
+                 </div>
+                 <div class="card-side">
+                     <h4>Back of Card</h4>
+                     <textarea id="backContent" rows="4" placeholder="Back content" required></textarea>
+                     <input type="file" id="backFile" accept="image/*,.pdf">
+                     <div id="backPreview"></div>
+                 </div>
+                 <button type="submit">Add Card</button>
+             </form>
+         </div>
+     </div>
+ </main>
+
+
+ <footer>
+   <div class="bottom-bar"></div>
+</footer>
+
+
+ <div id="reviewModal" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="progressBar" class="progress-bar">
+          <div id="progressFill" class="progress-fill"></div>
+      </div>
+      <div id="cardContent"></div>
+  </div>
+</div>>
+</div>
+ <div id="settingsModal" class="modal">
+     <div class="modal-content">
+         <span class="close" onclick="closeSettingsModal()">&times;</span>
+         <div id="settingsModalContent"></div>
+     </div>
+ </div>
+ <div id="confirmModal" class="modal">
+     <div class="modal-content">
+         <div id="confirmModalContent"></div>
+     </div>
+ </div>
+ <div id="completionModal" class="modal">
+     <div class="modal-content">
+         <div id="completionModalContent"></div>
+     </div>
+ </div>
+ <div id="reviewModal" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="progressBar" class="progress-bar">
+          <div id="progressFill" class="progress-fill"></div>
+      </div>
+      <div id="cardContent"></div>
+      <div id="navigationButtons">
+          <button id="prevCard">Previous Card</button>
+          <button id="nextCard">Next Card</button>
+      </div>
+  </div>
+</div>
+ <script src="memorize.js"></script>
+ <script>
+   document.addEventListener('DOMContentLoaded', function() {
+       const currentPage = window.location.pathname.split("/").pop();
+       const buttons = {
+           'index.html': document.querySelector('.home-button'),
+           'about.html': document.getElementById('aboutButton'),
+           'memorize.html': document.getElementById('memorizeButton'),
+           'user-settings.html': document.getElementById('userSettingsButton')
+       };
+        for (let page in buttons) {
+           if (buttons[page]) {
+               if (page === currentPage) {
+                   buttons[page].classList.add('current-page');
+                   buttons[page].removeAttribute('href');
+                   buttons[page].style.pointerEvents = 'none';
+               } else {
+                   buttons[page].classList.remove('current-page');
+               }
+           }
+       }
+   });
+   </script>
+   <script src="/js/common.js"></script>
+   <script>document.addEventListener('DOMContentLoaded', function() {
+     const buttons = document.querySelectorAll('.nav-button');
+    
+     buttons.forEach(button => {
+         button.addEventListener('mousedown', function() {
+             const svg = this.querySelector('svg');
+             if (svg) svg.style.transform = 'scale(0.95)';
+         });
+          button.addEventListener('mouseup', function() {
+             const svg = this.querySelector('svg');
+             if (svg) svg.style.transform = 'scale(1)';
+         });
+          button.addEventListener('mouseleave', function() {
+             const svg = this.querySelector('svg');
+             if (svg) svg.style.transform = 'scale(1)';
+         });
+     });
+ });
+</script>
+</body>
+</html>

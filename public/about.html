@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Project Ebbinghaus</title>
+    <link rel="stylesheet" href="about.css">
+</head>
+<body>
+    <svg width="0" height="0">
+        <defs>
+            <filter id="turbulence-text">
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="3" seed="1">
+                    <animate attributeName="seed" from="1" to="10" dur="0.5s" repeatCount="indefinite"/>
+                </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" scale="2"/>
+            </filter>
+            <filter id="turbulence-box">
+                <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="2" seed="1">
+                    <animate attributeName="seed" from="1" to="10" dur="1s" repeatCount="indefinite"/>
+                </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" scale="1"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <header>
+        <nav class="top-bar">
+            <div class="left-buttons">
+                <a href="home-page.html" class="nav-button home-button" id="homebutton">
+                    <svg width="220" height="50">
+                        <text x="10" y="30" filter="url(#turbulence-text)" fill="white" font-size="22" font-weight="bold">Project Ebbinghaus</text>
+                    </svg>
+                </a>
+                <div class="divider"></div>
+                <a class="nav-button current-page" id="aboutButton">
+                    <svg width="90" height="40">
+                        <rect class="button-bg" x="5" y="5" width="80" height="30" rx="3" ry="3" fill="rgba(211, 47, 47, 0.3)"/>
+                        <text x="45" y="25" text-anchor="middle" filter="url(#turbulence-text)" fill="white" font-size="18" font-weight="bold">About</text>
+                    </svg>
+                </a>
+                <a href="memorize.html" class="nav-button" id="memorizeButton">
+                    <svg width="120" height="40">
+                        <rect class="button-bg" x="5" y="5" width="110" height="30" rx="3" ry="3" fill="transparent"/>
+                        <text x="60" y="25" text-anchor="middle" filter="url(#turbulence-text)" fill="white" font-size="18" font-weight="bold">Memorize</text>
+                    </svg>
+                </a>
+                <a href="user-settings.html" class="nav-button" id="userSettingsButton">
+                    <svg width="150" height="40">
+                        <rect class="button-bg" x="5" y="5" width="140" height="30" rx="3" ry="3" fill="transparent"/>
+                        <text x="75" y="25" text-anchor="middle" filter="url(#turbulence-text)" fill="white" font-size="18" font-weight="bold">User Settings</text>
+                    </svg>
+                </a>
+            </div>
+            <div class="right-buttons">
+                <a href="login.html" class="login-button nav-button">
+                    <svg width="90" height="40">
+                        <rect class="button-bg" x="5" y="5" width="80" height="30" rx="3" ry="3" fill="#D32F2F"/>
+                        <text x="45" y="25" text-anchor="middle" filter="url(#turbulence-text)" fill="white" font-size="18" font-weight="bold">Log In</text>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="topic-section">
+            <div class="topic-header">
+                <svg width="300" height="40" viewBox="0 0 300 40">
+                    <rect width="300" height="40" fill="#E57373" filter="url(#turbulence-box)" rx="3" ry="3"/>
+                    <text x="10" y="25" fill="white" font-size="16" font-weight="bold" filter="url(#turbulence-text)">ABOUT PROJECT EBBINGHAUS</text>
+                </svg>
+            </div>
+            <div class="content-box">
+                <p>Project Ebbinghaus is an online tool designed to help you not forget things worth remembering - inspired by studies of an experimental psychologist Herman Ebbinghaus, it relies on his findings about <a href="https://en.wikipedia.org/wiki/Spacing_effect" class="wiki-link">spacing effect</a> and the <a href="https://en.wikipedia.org/wiki/Forgetting_curve" class="wiki-link">forgetting curve</a>; the more times we're exposed to a material, the higher the likelihood that we will remember it.</p>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <div class="topic-header">
+                <svg width="250" height="40" viewBox="0 0 250 40">
+                    <rect width="250" height="40" fill="#E57373" filter="url(#turbulence-box)" rx="3" ry="3"/>
+                    <text x="10" y="25" fill="white" font-size="16" font-weight="bold" filter="url(#turbulence-text)">HERMANN EBBINGHAUS</text>
+                </svg>
+            </div>
+            <div class="content-box">
+                <p><a href="https://en.wikipedia.org/wiki/Hermann_Ebbinghaus" class="wiki-link">Hermann Ebbinghaus</a> was a German psychologist and one of the leading pioneers of experimental psychology. He is most known for conducting experimental research on memory and processes of learning and forgetting. He's the discoverer of the forgetting curve and spacing effect, also known as <a href="https://en.wikipedia.org/wiki/Spaced_repetition" class="wiki-link">spaced repetition</a>.</p>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <div class="topic-header">
+                <svg width="400" height="40" viewBox="0 0 400 40">
+                    <rect width="400" height="40" fill="#E57373" filter="url(#turbulence-box)" rx="3" ry="3"/>
+                    <text x="10" y="25" fill="white" font-size="16" font-weight="bold" filter="url(#turbulence-text)">SCIENCE OF FORGETTING AND REMEMBERING</text>
+                </svg>
+            </div>
+            <div class="content-box">
+                <p>Unfortunately, after being exposed to new information, humans are far more prone to forgetting it rather soon, as opposed to memorizing it - this is what Professor Ebbinghaus called the forgetting curve. To this day it is supported that memorization loss is exponential and that the sharpest decline happens quickly after initial learning and then tapers over time.</p>
+                
+                <div class="image-container">
+                    <svg width="100%" height="300">
+                        <image href="Quick sheets - page 7.png" width="100%" height="300" preserveAspectRatio="xMidYMid meet" filter="url(#turbulence-text)"/>
+                    </svg>
+                    <div class="image-caption">The Forgetting Curve: Memory's Natural Decline</div>
+                </div>
+
+                <p>However, as Ebbinghaus's research suggests, how we choose to learn new information plays a significant role in how much we end up remembering:</p>
+                <ol>
+                    <li>Spacing effect: New information we learn should be conducted through increasingly spaced out intervals of study sessions (hence "spacing effect") - by forcing our brain to relearn information until perfect recall multiple times, we can reach near perfect long term retention of material we might have otherwise forgotten.</li>
+                    <li>Sufficiently long learning sessions: generally, sufficiently long learning sessions also improved retention, as they allowed for more repetition and contemplation on the material; one effective technique is called <a href="https://en.wikipedia.org/wiki/Active_recall" class="wiki-link">active recall</a>.</li>
+                    <li>Meaningful material retained better: Ebbinghaus and other researchers also found that personally meaningful material has a much faster and more successful retention rate than others; this can be accomplished by <a href="https://en.wikipedia.org/wiki/Mnemonic" class="wiki-link">mnemonic techniques</a> and</li>
+                </ol>
+
+                <div class="image-container">
+                    <svg width="100%" height="300">
+                        <image href="Quick sheets - page 8.png" width="100%" height="300" preserveAspectRatio="xMidYMid meet" filter="url(#turbulence-text)"/>
+                    </svg>
+                    <div class="image-caption">Spaced Repetition: Beating the Curve</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <div class="topic-header">
+                <svg width="150" height="40" viewBox="0 0 150 40">
+                    <rect width="150" height="40" fill="#E57373" filter="url(#turbulence-box)" rx="3" ry="3"/>
+                    <text x="10" y="25" fill="white" font-size="16" font-weight="bold" filter="url(#turbulence-text)">SOURCES</text>
+                </svg>
+            </div>
+            <div class="content-box">
+                <p class="source-header">Primary Sources:</p>
+                <ul>
+                    <li>Ebbinghaus, Hermann. <em>Über das Gedächtnis: Untersuchungen zur Experimentellen Psychologie</em> [<em>On Memory: Investigations in Experimental Psychology</em>]. Duncker & Humblot, 1885.</li>
+                    <li>Ebbinghaus, Hermann. <em>Grundzüge der Psychologie</em> [<em>Outlines of Psychology</em>]. Veit & Comp, 1897.</li>
+                </ul>
+                <p class="source-header">Secondary Sources:</p>
+                <ul>
+                    <li>"Hermann Ebbinghaus." <em>Wikipedia</em>, Wikimedia Foundation, https://en.wikipedia.org/wiki/Hermann_Ebbinghaus. Accessed 10 Aug. 2024.</li>
+                    <li>"Hermann Ebbinghaus." <em>Encyclopaedia Britannica</em>, 2024, https://www.britannica.com/biography/Hermann-Ebbinghaus. Accessed 10 Aug. 2024.</li>
+                    <li>"Spaced Repetition." <em>Wikipedia</em>, Wikimedia Foundation, https://en.wikipedia.org/wiki/Spaced_repetition. Accessed 10 Aug. 2024.</li>
+                    <li>"Spacing Effect." <em>Wikipedia</em>, Wikimedia Foundation, https://en.wikipedia.org/wiki/Spacing_effect. Accessed 10 Aug. 2024.</li>
+                    <li>"Forgetting Curve." <em>Wikipedia</em>, Wikimedia Foundation, https://en.wikipedia.org/wiki/Forgetting_curve. Accessed 10 Aug. 2024.</li>
+                    <li>"Mnemonic." <em>Wikipedia</em>, Wikimedia Foundation, https://en.wikipedia.org/wiki/Mnemonic. Accessed 10 Aug. 2024.</li>
+                    <li>"Learning Curve." <em>Wikipedia</em>, Wikimedia Foundation, https://en.wikipedia.org/wiki/Learning_curve. Accessed 10 Aug. 2024.</li>
+                    <li>"Serial-Position Effect." <em>Wikipedia</em>, Wikimedia Foundation, https://en.wikipedia.org/wiki/Serial-position_effect. Accessed 10 Aug. 2024.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="topic-section">
+            <div class="topic-header">
+                <svg width="150" height="40" viewBox="0 0 150 40">
+                    <rect width="150" height="40" fill="#E57373" filter="url(#turbulence-box)" rx="3" ry="3"/>
+                    <text x="10" y="25" fill="white" font-size="16" font-weight="bold" filter="url(#turbulence-text)">FEEDBACK</text>
+                </svg>
+            </div>
+            <div class="content-box">
+                <p>Questions? Thoughts? Suggestions?<br>
+                Contact me at: anej.grosicar@berkeley.edu</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Footer content if needed -->
+    </footer>
+
+    <script src="/js/common.js"></script>
+</body>
+</html>
