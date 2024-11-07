@@ -219,6 +219,7 @@ console.log('Current deck:', currentDeck);
 showReviewModal();
 showIntroScreen();
 }
+
 function showIntroScreen() {
 console.log('Showing intro screen');
 const cardContent = document.getElementById('cardContent');
