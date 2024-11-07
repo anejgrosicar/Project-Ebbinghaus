@@ -1,4 +1,5 @@
 let decks = JSON.parse(localStorage.getItem('decks')) || [];
+
 let currentDeck, currentCardIndex, currentDeckIndex;
 // Check authentication status
 function checkAuth() {
@@ -58,6 +59,7 @@ const newCard = {
     nextReview: new Date().toISOString(),
     stage: reviewIntervals[0]
 };
+
 Promise.all([
     processFile(frontFile).then(result => newCard.front.file = result),
     processFile(backFile).then(result => newCard.back.file = result)
@@ -66,6 +68,7 @@ Promise.all([
     localStorage.setItem('decks', JSON.stringify(decks));
     displayDecks();
 });
+
 }
 function processFile(file) {
 return new Promise((resolve, reject) => {
@@ -108,62 +111,77 @@ if (progressFill) {
 }
 }
 function displayDecks() {
-const currentDecksList = document.getElementById('currentDecksList');
-const pastDecksList = document.getElementById('pastDecksList');
- currentDecksList.innerHTML = '';
-pastDecksList.innerHTML = '';
-const currentDecks = decks.filter(deck => !deck.completed);
-const pastDecks = decks.filter(deck => deck.completed);
-currentDecks.forEach((deck, index) => {
-    const deckElement = createDeckElement(deck, index);
-    currentDecksList.appendChild(deckElement);
-});
-if (pastDecks.length === 0) {
-    pastDecksList.innerHTML = '<p>There are no past decks yet.</p>';
-} else {
-    pastDecks.forEach((deck, index) => {
-        const deckElement = createDeckElement(deck, index + currentDecks.length);
-        pastDecksList.appendChild(deckElement);
+
+    console.log("hello!");
+
+    const currentDecksList = document.getElementById('currentDecksList');
+    const pastDecksList = document.getElementById('pastDecksList');
+
+    currentDecksList.innerHTML = '';
+    pastDecksList.innerHTML = '';
+
+    const currentDecks = decks.filter(deck => !deck.completed);
+    const pastDecks = decks.filter(deck => deck.completed);
+
+    currentDecks.forEach((deck, index) => {
+        const deckElement = createDeckElement(deck, index);
+        currentDecksList.appendChild(deckElement);
     });
+
+    if (pastDecks.length === 0) {
+        pastDecksList.innerHTML = '<p>There are no past decks yet.</p>';
+    } else {
+        pastDecks.forEach((deck, index) => {
+            const deckElement = createDeckElement(deck, index + currentDecks.length);
+            pastDecksList.appendChild(deckElement);
+        });
+    }
 }
-}
+
 function createDeckElement(deck, index) {
-const deckElement = document.createElement('div');
-deckElement.className = 'deck';
-const deckHeader = document.createElement('div');
-deckHeader.className = 'deck-header';
-deckHeader.innerHTML = `
-    <h3>${deck.name}</h3>
-    <button class="settings-btn" onclick="showDeckSettings(${index})">⋮</button>
-`;
-deckElement.appendChild(deckHeader);
-if (deck.cards.length === 0) {
-    // For empty decks
-    const emptyMessage = document.createElement('p');
-    emptyMessage.className = 'empty-deck-message';
-    emptyMessage.textContent = 'Please add cards to this deck';
-    deckElement.appendChild(emptyMessage);
-} else {
-    // For decks with cards
-    const today = new Date();
-    const nextReviewDate = new Date(deck.nextReview);
-    const isReviewDue = today >= nextReviewDate;
-    const progressStadium = document.createElement('div');
-    progressStadium.className = 'progress-stadium';
-    progressStadium.innerHTML = `<div class="progress-fill" style="width: ${deck.progress}%;"></div>`;
-    deckElement.appendChild(progressStadium);
-    const nextReviewParagraph = document.createElement('p');
-    nextReviewParagraph.className = `next-review ${isReviewDue ? 'review-due' : ''}`;
-    nextReviewParagraph.textContent = isReviewDue ? "It's time to review your deck!" : `Next review: ${nextReviewDate.toLocaleDateString()}`;
-    deckElement.appendChild(nextReviewParagraph);
-    const reviewButton = document.createElement('button');
-    reviewButton.className = isReviewDue ? 'review-btn' : 'practice-btn';
-    reviewButton.textContent = isReviewDue ? 'Review' : 'Practice';
-    reviewButton.onclick = () => initiateReview(index, !isReviewDue);
-    deckElement.appendChild(reviewButton);
+
+    const deckElement = document.createElement('div');
+    deckElement.className = 'deck';
+    
+    const deckHeader = document.createElement('div');
+    deckHeader.className = 'deck-header';
+    deckHeader.innerHTML = `
+        <h3>${deck.name}</h3>
+        <button class="settings-btn" onclick="showDeckSettings(${index})">⋮</button>
+    `;
+
+    deckElement.appendChild(deckHeader);
+
+    if (deck.cards.length === 0) {
+        // For empty decks
+        const emptyMessage = document.createElement('p');
+        emptyMessage.className = 'empty-deck-message';
+        emptyMessage.textContent = 'Please add cards to this deck';
+        deckElement.appendChild(emptyMessage);
+    } else {
+        // For decks with cards
+        const today = new Date();
+        const nextReviewDate = new Date(deck.nextReview);
+        const isReviewDue = today >= nextReviewDate;
+        const progressStadium = document.createElement('div');
+        progressStadium.className = 'progress-stadium';
+        progressStadium.innerHTML = `<div class="progress-fill" style="width: ${deck.progress}%;"></div>`;
+        deckElement.appendChild(progressStadium);
+        const nextReviewParagraph = document.createElement('p');
+        nextReviewParagraph.className = `next-review ${isReviewDue ? 'review-due' : ''}`;
+        nextReviewParagraph.textContent = isReviewDue ? "It's time to review your deck!" : `Next review: ${nextReviewDate.toLocaleDateString()}`;
+        deckElement.appendChild(nextReviewParagraph);
+        const reviewButton = document.createElement('button');
+        reviewButton.className = isReviewDue ? 'review-btn' : 'practice-btn';
+        reviewButton.textContent = isReviewDue ? 'Review' : 'Practice';
+        reviewButton.onclick = () => initiateReview(index, !isReviewDue);
+        deckElement.appendChild(reviewButton);
+    }
+
+    return deckElement;
+
 }
-return deckElement;
-}
+
 function calculateDeckProgress(deck) {
 if (deck.cards.length === 0) return 0;
 const completedReviews = deck.cards.reduce((sum, card) => {
@@ -704,40 +722,57 @@ svgContent += '</svg>';
 return svgContent;
 }
 document.addEventListener('DOMContentLoaded', (event) => {
-var coll = document.getElementsByClassName("collapsible");
-var i;
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = this.nextElementSibling;
-      if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-          setTimeout(() => {
-              content.style.display = "none";
-          }, 300);
-      } else {
-          content.style.display = "block";
-          content.style.maxHeight = content.scrollHeight + "px";
-      }
-  });
-}
-document.getElementById('deckForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const deckName = document.getElementById('deckName').value;
-  saveDeck(deckName);
-  this.reset();
-});
-document.getElementById('cardForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const deckIndex = document.getElementById('deckSelect').value;
-  const frontContent = document.getElementById('frontContent').value;
-  const backContent = document.getElementById('backContent').value;
-  const frontFile = document.getElementById('frontFile').files[0];
-  const backFile = document.getElementById('backFile').files[0];
-  addCard(deckIndex, frontContent, backContent, frontFile, backFile);
-  this.reset();
-  clearFilePreviews();
-});
+    var coll = document.getElementsByClassName("collapsible");
+    
+    for (let i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            // Handle collapsible functionality
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            
+            // If this is the "Current Decks" header, call displayDecks()
+            if (this.textContent.trim() === "Current Decks") {
+                displayDecks();
+            }
+            
+            // Handle collapse/expand animation
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                setTimeout(() => {
+                    content.style.display = "none";
+                }, 300);
+            } else {
+                content.style.display = "block";
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+
+    console.log("SIUUUU!");
+
+    // Initialize decks display on page load
+    displayDecks();
+    
+    // Rest of your existing DOMContentLoaded event handlers...
+    document.getElementById('deckForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const deckName = document.getElementById('deckName').value;
+        saveDeck(deckName);
+        this.reset();
+    });
+
+    document.getElementById('cardForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const deckIndex = document.getElementById('deckSelect').value;
+    const frontContent = document.getElementById('frontContent').value;
+    const backContent = document.getElementById('backContent').value;
+    const frontFile = document.getElementById('frontFile').files[0];
+    const backFile = document.getElementById('backFile').files[0];
+    addCard(deckIndex, frontContent, backContent, frontFile, backFile);
+    this.reset();
+    clearFilePreviews();
+    });
+
 document.getElementById('frontFile').addEventListener('change', function(e) {
   const existingPreview = document.getElementById('frontPreview');
   if (existingPreview) existingPreview.innerHTML = '';

@@ -70,14 +70,18 @@
 
 
      <div class="deck-container">
-       <h2 class="collapsible">Current Decks</h2>
+        <h2 class="collapsible">Current Decks</h2>
         <div class="content">
-        <div id="currentDecksList" class="decks-grid"></div>
+          <div id="currentDecksList" class="decks-grid">
+            <p>There are no past decks yet.</p>
+          </div>
         </div>
         <h2 class="collapsible">Past Decks</h2>
-     <div class="content">
-       <div id="pastDecksList" class="decks-grid"></div>
-     </div>
+        <div class="content">
+          <div id="pastDecksList" class="decks-grid">
+            <p>There are no past decks yet.</p>
+          </div>
+        </div>
      </div>
 
 
@@ -172,7 +176,7 @@
       </div>
   </div>
 </div>
- <script src="memorize.js"></script>
+ <script src="memory.js"></script>
  <script>
    document.addEventListener('DOMContentLoaded', function() {
        const currentPage = window.location.pathname.split("/").pop();
